@@ -190,24 +190,24 @@ function promptReset() {
 }
 
 // Event listeners
-drawingCanvas.addEventListener("mousedown", function(e) {
+drawingCanvas.addEventListener("pointerdown", function(e) {
     drawingInfo.isMouseDown = true;
     drawStart(e.offsetX, e.offsetY);
 })
 
-window.addEventListener('mousedown', function(e){
+window.addEventListener('pointerdown', function(e){
     drawingInfo.isMouseDown = true;
 })
 
-window.addEventListener("mouseup", function(e) {
+window.addEventListener("pointerup", function(e) {
     drawingInfo.isMouseDown = false;
 })
 
-drawingCanvas.addEventListener('mouseup', function(e) {
+drawingCanvas.addEventListener('pointerup', function(e) {
     saveCState(); // stroke is done, so we save
 })
 
-drawingCanvas.addEventListener("mousemove", function(e) {
+drawingCanvas.addEventListener("pointermove", function(e) {
     if (drawingInfo.isMouseDown) {
         drawBrush(e.offsetX, e.offsetY);
     }
@@ -217,7 +217,7 @@ drawingCanvas.addEventListener("mousemove", function(e) {
     customCursor.style.display = 'block';
 })
 
-drawingCanvas.addEventListener('mouseout', function(e) {
+drawingCanvas.addEventListener('pointerout', function(e) {
     drawingInfo.oldX = null;
     drawingInfo.oldY = null;
     // Prevents weirdness if mouse exits and re enters at a different spot
