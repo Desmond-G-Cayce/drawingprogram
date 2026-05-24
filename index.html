@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+
+<head>
+    <script src="script.js" defer></script>
+    <style>
+        * {
+            font-family: monospace;
+            user-select: none
+        }
+        
+        #drawingCanvas {
+            border: 1px solid black;
+            cursor:none
+        }
+
+        #canvasDiv {
+            contain:paint;
+        }
+
+        #customCursor {
+            position:absolute;
+            border:2px solid gray;
+            width:21px;
+            height:21px;
+            border-radius: 100%;
+            pointer-events: none;
+        }
+
+        #topBar {
+            border: 1px solid black;
+            display:flex
+        }
+
+        #resetButton {
+            background-color: red;
+            color: white;
+            aspect-ratio: 1/1;
+        }
+
+        #saveLocalStorageButton {
+            background-color: lightgray;
+        }
+
+        #middle {
+            display:flex
+        }
+        #paletteButtons {
+            display:flex;
+            flex-direction:column;
+            flex-wrap: wrap;
+            padding:1.2em;
+            height: 26.4em /* tall enough for 6 colors (6 * 4) + padding (2 * 1.2) */
+        }
+        .colorButton {
+            width: 4em;
+            height: 4em;
+            border:1px solid gray;
+            border-radius: 1em;
+        }
+        .colorButton.selectedColor {
+            border: 5px solid black;
+        }
+    </style>
+</head>
+
+<body>
+    <div id = topBar>
+        <button id = 'resetButton' onclick='promptReset();'>Reset</button>
+        <button id = 'saveLocalStorageButton' onclick = 'saveLocal("drawing");'>Save to localStorage</button>
+        <button id = 'loadLocalStorageButton' onclick = 'loadLocal("drawing");'>Load from localStorage</button>
+    </div>
+    <div id = middle>
+        <div id = canvasDiv>
+            <canvas id = drawingCanvas></canvas>
+        </div>
+        <div id = customCursor></div>
+        <div id = paletteButtons>
+            <!-- JS will add buttons for colors -->
+        </div>
+    </div>
+    <div id = bottom>
+        <label for = 'sizeSlider'>Brush Size</label>
+        <input id = 'sizeSlider' type = 'range' min = '5' max = '85' step = '20'>
+        <button id = 'undoButton' onclick = 'undoStroke();'>Undo</button>
+        <button id = 'redoButton'>Redo</button>
+    </div>
+</body>
